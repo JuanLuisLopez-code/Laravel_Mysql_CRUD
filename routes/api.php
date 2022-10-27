@@ -19,4 +19,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::get('crud', [TableController::class, 'index']);
 Route::post('crud', [TableController::class, 'store']);
+Route::put('crud/{name}', [TableController::class, 'update']);

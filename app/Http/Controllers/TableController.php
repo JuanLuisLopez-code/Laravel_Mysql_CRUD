@@ -24,8 +24,8 @@ class TableController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-       
+    public function create()
+    {
     }
 
     /**
@@ -34,8 +34,8 @@ class TableController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
-        error_log($request);
+    public function store(Request $request)
+    {
         $table = new Table;
         $table->name = $request->name;
         $table->save();
@@ -75,7 +75,19 @@ class TableController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if (Table::where('id', $id)->exists()) {
+            $table = Table::find($id);
+            $table->name = $request->name;
+            $table->save();
+            return response()->json([
+              "message" => "Name updated successfully"
+            ], 200);
+          } else {
+            return response()->json([
+              "message" => "Name not found"
+            ], 404);
+          }
+
     }
 
     /**
