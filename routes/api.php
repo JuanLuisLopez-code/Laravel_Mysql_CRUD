@@ -22,3 +22,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('crud', [TableController::class, 'index']);
 Route::post('crud', [TableController::class, 'store']);
 Route::put('crud/{name}', [TableController::class, 'update']);
+Route::delete('crud/{name}', [TableController::class, 'destroy']);

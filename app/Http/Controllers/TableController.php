@@ -34,8 +34,7 @@ class TableController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         $table = new Table;
         $table->name = $request->name;
         $table->save();
@@ -98,6 +97,16 @@ class TableController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Table::where('id', $id)->exists()){
+            $table = Table::find($id);
+            $table->delete();
+            return response()->json([
+                "Message" => "id destroyed"
+            ], 200);
+        }else{
+            return response()->json([
+                "Message" => "This id don't exist"
+            ]);
+        }
     }
 }
