@@ -9,7 +9,7 @@ class Table extends Model
 {
     use HasFactory;
 
-    protected $table_asdasda = [
-        'name'
+    protected $fillable = [
+        "name"
     ];
 }
